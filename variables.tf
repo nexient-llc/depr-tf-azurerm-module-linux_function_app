@@ -59,28 +59,38 @@ variable "application_stack" {
     default = "docker"
 }
 
+variable "docker_image_name" {
+    description = "The docker image name. Required only when application_stack = docker"
+    default = "sample-functions"
+}
+
+variable "docker_image_tag" {
+    description = "The docker image tag. Required only when application_stack = docker"
+    default = "1001"
+}
+
 variable "dotnet_version" {
-    default = ""
-    description = "Dotnet version for function runtime. Required only when application_stack = dotnet"
+    default = null
+    description = "Dotnet version for function runtime. Required only when application_stack = dotnet. Must be 3.1 or 6.0"
 }
 
 variable "java_version" {
-    default = ""
+    default = null
     description = "Dotnet version for function runtime. Required only when application_stack = java"
 }
 
 variable "node_version" {
-    default = ""
+    default = null
     description = "Dotnet version for function runtime. Required only when application_stack = node"
 }
 
 variable "python_version" {
-    default = ""
+    default = null
     description = "Dotnet version for function runtime. Required only when application_stack = python"
 }
 
 variable "powershell_version" {
-    default = ""
+    default = null
     description = "Powershell Core version for function runtime. Required only when application_stack = powershell"
 }
 
@@ -96,6 +106,31 @@ variable "site_config" {
     default = {}
 }
 
+variable "application_settings" {
+    description = "The environment variables passed in to the function app"
+    type = map(string)
+    default = {}
+}
+
+variable "connection_strings" {
+    description = "List of connection strings (name, type, value)"
+    type = list(object({
+        name = string
+        type = string
+        value = string
+    }))
+    default = []
+}
+
+variable "cors" {
+    description = "CORS block (allowed_origins, support_credentials)"
+    type = object({
+        allowed_origins     = list(string)
+        support_credentials = bool
+    })
+    default = null
+}
+
 variable "custom_tags" {
     description = "Custom Tags"
     type = map(string)
@@ -109,3 +144,5 @@ variable "deployment_slots" {
     type = list(string)
     default = []
 }
+
+

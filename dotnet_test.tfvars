@@ -27,19 +27,11 @@ function_app_name = "deb-test-func-000"
 
 deployment_slots = ["stage"]
 
-connection_strings = [
-    {
-        name = "test_sql"
-        type = "SQLServer"
-        value = "jdbc:sqlserver://sql-wus-dev.database.windows.net:1433;database=sqldbwusdev;user=db_admin@sql-wus-dev;password={your_password_here};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
-    }
-]
+application_stack = "dotnet"
 
-cors = {
-    allowed_origins = ["example.com", "vanillavc.com"]
-    support_credentials = false
+dotnet_version = "6.0"
+
+application_settings = {
+    "APP_VERION" = "6.0"
 }
 
-site_config = {
-    "always_on" = true
-}
