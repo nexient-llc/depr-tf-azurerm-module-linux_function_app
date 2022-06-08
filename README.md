@@ -2,7 +2,7 @@
 
 ## Overview
 
-This module creates Azure Function App for Linux. It can also create optional linux Function App Slots.
+This module creates Azure Function App for Linux. It can also create optional linux Function App Slots. This module depends on other modules like resource_group, storage_account, container_registry, service_plan, app_insights which are provisioned in their own scope. We need to pass these resources as inputs to this module
 
 ## Pre-Commit hooks
 [.pre-commit-config.yaml](.pre-commit-config.yaml) file defines certain `pre-commit` hooks that are relevant to terraform, golang and common linting tasks. There are no custom hooks added.
