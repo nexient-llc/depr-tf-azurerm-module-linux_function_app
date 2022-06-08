@@ -28,7 +28,7 @@ func (suite *TerraTestSuite) SetupSuite() {
 	pwd, _ := os.Getwd()
 	suite.TerraformOptions = terraform.WithDefaultRetryableErrors(suite.T(), &terraform.Options{
 		TerraformDir: tempTestFolder,
-		VarFiles:     [](string){path.Join(pwd, "..", "..", "test.tfvars")},
+		VarFiles:     [](string){path.Join(pwd, "..", "test.tfvars")},
 	})
 	// unable to make the terraform idempotent for the deployment slots
 	terraform.InitAndApply(suite.T(), suite.TerraformOptions)
