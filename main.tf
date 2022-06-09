@@ -84,6 +84,13 @@ resource "azurerm_linux_function_app" "main" {
     application_insights_key               = data.azurerm_application_insights.app_insights.instrumentation_key
   }
 
+  dynamic "identity" {
+    for_each                = var.enable_system_managed_identity ? toset(["SystemAssigned"]) : toset([])
+    content {
+      type                  = identity.value
+    }
+  }
+
   lifecycle {
     ignore_changes = [
       site_config[0].application_stack[0].docker[0].image_name,
