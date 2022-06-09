@@ -151,5 +151,14 @@ resource "azurerm_linux_function_app_slot" "main" {
     application_insights_key               = data.azurerm_application_insights.app_insights.instrumentation_key
   }
 
+  lifecycle {
+    ignore_changes = [
+      site_config[0].application_stack[0].docker[0].image_name,
+      site_config[0].application_stack[0].docker[0].image_tag,
+      app_settings["WEBSITES_ENABLE_APP_SERVICE_STORAGE"],
+      app_settings["WEBSITE_ENABLE_SYNC_UPDATE_SITE"]
+    ]
+  }
+
   tags                                    = azurerm_linux_function_app.main.tags
 }
