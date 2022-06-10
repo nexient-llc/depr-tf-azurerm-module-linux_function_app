@@ -88,6 +88,7 @@ resource "azurerm_linux_function_app" "main" {
     for_each                = var.enable_system_managed_identity ? toset(["SystemAssigned"]) : toset([])
     content {
       type                  = identity.value
+      identity_ids          = []
     }
   }
 
@@ -171,6 +172,7 @@ resource "azurerm_linux_function_app_slot" "main" {
     for_each                = var.enable_system_managed_identity ? toset(["SystemAssigned"]) : toset([])
     content {
       type                  = identity.value
+      identity_ids          = []
     }
   }
 
