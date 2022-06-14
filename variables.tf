@@ -137,6 +137,12 @@ variable "custom_tags" {
     default = {}
 }
 
+variable "enable_system_managed_identity" {
+    description = "Enables the System Managed Identity"
+    type = bool
+    default = true
+}
+
 ## Variables related to Deployment Slots
 
 variable "deployment_slots" {
